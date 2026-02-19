@@ -6,6 +6,14 @@ Minimal Turborepo with:
 - `apps/web` — React + Vite frontend
 - `apps/api` — NestJS backend
 
+## Project docs
+
+For repository context and working rules:
+
+- `ARCHITECTURE.md` — What the system is (workspaces, boundaries, task graph)
+- `AGENTS.md` — How AI coding agents should work in this repo
+- `CONTRIBUTING.md` — What human contributors are expected to follow
+
 ## Requirements
 
 - Node.js `>=18`
