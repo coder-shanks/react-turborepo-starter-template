@@ -16,6 +16,7 @@ jobs:
     name: Detect Changed Apps
     runs-on: ubuntu-latest
     outputs:
+      shared: ${{ steps.filter.outputs.shared }}
       api: ${{ steps.filter.outputs.api }}
       web: ${{ steps.filter.outputs.web }}
     steps:
