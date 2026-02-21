@@ -27,20 +27,19 @@ jobs:
         uses: dorny/paths-filter@v3
         with:
           filters: |
+            shared:
+              - '.github/workflows/**'
+              - 'packages/**'
+              - 'turbo.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'package.json'
+
             api:
               - 'apps/api/**'
-              - 'packages/**'
-              - 'turbo.json'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'package.json'
+
             web:
               - 'apps/web/**'
-              - 'packages/**'
-              - 'turbo.json'
-              - 'pnpm-lock.yaml'
-              - 'pnpm-workspace.yaml'
-              - 'package.json'
 
   lint-format:
     name: Lint & Format
@@ -63,17 +62,18 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Run lint/format for api
-        if: needs.changes.outputs.api == 'true'
+        if: needs.changes.outputs.api == 'true' || needs.changes.outputs.shared == 'true'
         run: pnpm lint:format --filter=api
 
       - name: Run lint/format for web
-        if: needs.changes.outputs.web == 'true'
+        if: needs.changes.outputs.web == 'true' || needs.changes.outputs.shared == 'true'
         run: pnpm lint:format --filter=web
 
   deploy-api:
     name: Build & Deploy API
     runs-on: ubuntu-latest
     needs: lint-format
+    if: needs.changes.outputs.api == 'true' || needs.changes.outputs.shared == 'true'
     steps:
       - name: Trigger API deployment webhook
         env:
@@ -87,6 +87,7 @@ jobs:
     name: Build & Deploy Web
     runs-on: ubuntu-latest
     needs: lint-format
+    if: needs.changes.outputs.web == 'true' || needs.changes.outputs.shared == 'true'
     steps:
       - name: Trigger Web deployment webhook
         env:
