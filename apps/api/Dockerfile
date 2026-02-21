@@ -14,7 +14,6 @@ FROM base AS installer
 WORKDIR /repo
 COPY --from=pruner /repo/out/json/ .
 COPY --from=pruner /repo/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY biome.json .
 RUN pnpm install --frozen-lockfile
 COPY --from=pruner /repo/out/full/ .
 RUN pnpm turbo run build --filter=api...
