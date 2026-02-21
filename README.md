@@ -61,6 +61,46 @@ pnpm --filter web dev
 pnpm --filter api dev
 ```
 
+## Docker deployment with `turbo prune`
+
+This repository includes optimized multi-stage Dockerfiles for both apps:
+
+- `apps/api/Dockerfile`
+- `apps/web/Dockerfile`
+
+### 1) Create a pruned monorepo (inside Docker build)
+
+Each Dockerfile runs:
+
+```bash
+pnpm dlx turbo@^2 prune <app> --docker
+```
+
+This produces a minimal `out/` directory that contains only the selected app and required workspace dependencies.
+
+### 2) Build with the pruned output
+
+The Dockerfile then:
+
+1. Copies `out/json` + lockfile
+2. Installs only required dependencies
+3. Copies `out/full`
+4. Builds only the target app via Turbo filter
+
+### Build images
+
+```bash
+pnpm docker:build:api
+pnpm docker:build:web
+```
+
+### Run containers locally
+
+```bash
+docker run --rm -p 3000:3000 react-turbo-api:latest
+docker run --rm -p 8080:80 react-turbo-web:latest
+```
+
 
 ## How shadcn/ui component placement and import works
 

@@ -1,0 +1,14 @@
+**/node_modules
+**/.turbo
+**/dist
+**/.next
+**/coverage
+**/.cache
+**/.pnpm-store
+**/.DS_Store
+.git
+.gitignore
+.github
+.vscode
+.husky
+*.md

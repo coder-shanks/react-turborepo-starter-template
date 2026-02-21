@@ -19,3 +19,17 @@ pnpm --filter web build
 ```bash
 pnpm --filter web preview
 ```
+
+## Docker
+
+Build from repo root:
+
+```bash
+docker build -f apps/web/Dockerfile -t react-turbo-web:latest .
+```
+
+Run:
+
+```bash
+docker run --rm -p 8080:80 react-turbo-web:latest
+```

@@ -5,6 +5,8 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint:format": "turbo run lint:format",
+		"docker:build:api": "docker build -f apps/api/Dockerfile -t react-turbo-api:latest .",
+		"docker:build:web": "docker build -f apps/web/Dockerfile -t react-turbo-web:latest .",
 		"prepare": "husky"
 	},
 	"devDependencies": {
