@@ -43,6 +43,14 @@ pnpm build
 pnpm lint:format
 ```
 
+### Pre-commit hook
+
+Husky is configured to automatically run linting/formatting in both apps before each commit via `.husky/pre-commit`. This ensures:
+- Code is formatted automatically (`--write`)
+- Commits are blocked if there are unfixable lint errors (`--error-on-warnings`)
+
+If a commit is blocked due to lint errors, fix the issues and try again.
+
 ## Run individual apps
 
 ```bash

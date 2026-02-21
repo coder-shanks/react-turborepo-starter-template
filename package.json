@@ -4,10 +4,12 @@
 	"scripts": {
 		"build": "turbo run build",
 		"dev": "turbo run dev",
-		"lint:format": "turbo run lint:format"
+		"lint:format": "turbo run lint:format",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.4.2",
+		"husky": "^9.1.7",
 		"turbo": "^2.8.9",
 		"typescript": "5.9.2"
 	},

@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
-		"lint:format": "biome check --write .",
+		"lint:format": "biome check --write --error-on-warnings .",
 		"preview": "vite preview"
 	},
 	"dependencies": {

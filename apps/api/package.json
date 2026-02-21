@@ -7,7 +7,7 @@
 	"scripts": {
 		"build": "nest build",
 		"dev": "nest start --watch",
-		"lint:format": "biome check --write .",
+		"lint:format": "biome check --write --error-on-warnings .",
 		"start": "nest start",
 		"start:debug": "nest start --debug --watch",
 		"start:prod": "node dist/main",
